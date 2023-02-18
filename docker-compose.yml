@@ -15,7 +15,7 @@ services:
       - SERVER_LOG_LEVEL=trace
       - SERVER_LOG_REMOTE_ADDRESS=true
     ports: 
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./public:/public
 
@@ -33,6 +33,24 @@ services:
       - SERVER_LOG_LEVEL=trace
       - SERVER_LOG_REMOTE_ADDRESS=true
     ports: 
-      - "8081:80"
+      - "8082:80"
     volumes:
       - ./public_02:/public
+
+  web-03:
+    image: joseluisq/static-web-server:2-alpine
+    container_name: web-03
+    environment:
+      # Note: those envs are customizable but also optional
+      - SERVER_CONFIG_FILE=./config.toml
+#      - SERVER_HOST=0.0.0.0
+#      - SERVER_PORT=80
+#      - SERVER_DIRECTORY_LISTING=true
+#      - SERVER_DIRECTORY_LISTING_ORDER=1
+#      - SERVER_ROOT=./public
+      - SERVER_LOG_LEVEL=trace
+      - SERVER_LOG_REMOTE_ADDRESS=true
+    ports: 
+      - "8083:80"
+    volumes:
+      - ./public_03:/public
